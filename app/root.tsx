@@ -1,75 +1,45 @@
-import {
-	isRouteErrorResponse,
-	Links,
-	Meta,
-	Outlet,
-	Scripts,
-	ScrollRestoration,
-} from "react-router";
-
-import type { Route } from "./+types/root";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, Link } from "react-router";
 import "./app.css";
 
-export const links: Route.LinksFunction = () => [
-	{ rel: "preconnect", href: "https://fonts.googleapis.com" },
-	{
-		rel: "preconnect",
-		href: "https://fonts.gstatic.com",
-		crossOrigin: "anonymous",
-	},
-	{
-		rel: "stylesheet",
-		href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
-	},
-];
-
-export function Layout({ children }: { children: React.ReactNode }) {
-	return (
-		<html lang="en">
-			<head>
-				<meta charSet="utf-8" />
-				<meta name="viewport" content="width=device-width, initial-scale=1" />
-				<Meta />
-				<Links />
-			</head>
-			<body>
-				{children}
-				<ScrollRestoration />
-				<Scripts />
-			</body>
-		</html>
-	);
+function Logo() {
+  return (
+    <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="48" stroke="#004a99" strokeWidth="4"/>
+      <rect x="42" y="25" width="16" height="50" rx="8" fill="#00aaff"/>
+      <rect x="25" y="42" width="50" height="16" rx="8" fill="#004a99"/>
+    </svg>
+  );
 }
 
 export default function App() {
-	return <Outlet />;
-}
-
-export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-	let message = "Oops!";
-	let details = "An unexpected error occurred.";
-	let stack: string | undefined;
-
-	if (isRouteErrorResponse(error)) {
-		message = error.status === 404 ? "404" : "Error";
-		details =
-			error.status === 404
-				? "The requested page could not be found."
-				: error.statusText || details;
-	} else if (import.meta.env.DEV && error && error instanceof Error) {
-		details = error.message;
-		stack = error.stack;
-	}
-
-	return (
-		<main className="pt-16 p-4 container mx-auto">
-			<h1>{message}</h1>
-			<p>{details}</p>
-			{stack && (
-				<pre className="w-full p-4 overflow-x-auto">
-					<code>{stack}</code>
-				</pre>
-			)}
-		</main>
-	);
+  return (
+    <html lang="en">
+      <head>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        <nav style={{ display: 'flex', justifyContent: 'space-between', padding: '15px 5%' }}>
+          <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
+            <Logo />
+            <span style={{ fontWeight: '800', fontSize: '1.2rem', color: '#004a99', letterSpacing: '1px' }}>
+              MEDOCS <small style={{ fontWeight: '400', fontSize: '0.7rem', display: 'block' }}>HEALTH SERVICES</small>
+            </span>
+          </Link>
+          <div style={{ display: 'flex', gap: '25px', alignItems: 'center' }}>
+            <Link to="/" style={{ color: '#333', textDecoration: 'none', fontWeight: '500' }}>Home</Link>
+            <Link to="/about" style={{ color: '#333', textDecoration: 'none', fontWeight: '500' }}>About</Link>
+            <Link to="/contact" className="btn-primary" style={{ padding: '8px 20px', fontSize: '0.9rem' }}>Contact</Link>
+          </div>
+        </nav>
+        
+        <main className="page-enter">
+          <Outlet />
+        </main>
+        
+        <ScrollRestoration />
+        <Scripts />
+      </body>
+    </html>
+  );
 }
