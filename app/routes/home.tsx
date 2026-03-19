@@ -2,10 +2,10 @@ import { Link } from "react-router";
 
 export default function Home() {
   const services = [
-    { id: '1', name: 'Ambulance', img: '/810BAE48-7E8B-426D-B949-CD397B8DB004.jpg' },
-    { id: '2', name: 'Home Visit', img: '/36D24EF7-7AB3-4C21-965F-376E81E837BF.jpg' },
-    { id: '3', name: 'Palliative', img: '/AF27A051-B3D3-4353-BF0A-76DEE889B540.jpg' },
-    { id: '4', name: 'Air Escort', img: '/3EB632EA-D771-44D2-9F15-75E56ECED7B2.jpg' }
+    { id: '1', name: 'Ambulance', img: '/810BAE48-7E8B-426D-B949-CD397B8DB004.JPG' },
+    { id: '2', name: 'Home Visit', img: '/36D24EF7-7AB3-4C21-965F-376E81E837BF.JPG' },
+    { id: '3', name: 'Palliative', img: '/AF27A051-B3D3-4353-BF0A-76DEE889B540.JPG' },
+    { id: '4', name: 'Air Escort', img: '/3EB632EA-D771-44D2-9F15-75E56ECED7B2.JPG' }
   ];
 
   return (
