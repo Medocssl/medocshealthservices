@@ -2,79 +2,60 @@ import { Link } from "react-router";
 import "../app.css";
 
 export default function Home() {
+  const services = [
+    { id: 'ambulance', name: 'Ambulance', img: '/810BAE48-7E8B-426D-B949-CD397B8DB004.jpg', desc: 'Emergency response with modern ICU-equipped vehicles.' },
+    { id: 'home-visits', name: 'Home Visits', img: '/36D24EF7-7AB3-4C21-965F-376E81E837BF.jpg', desc: 'Professional medical care at your doorstep.' },
+    { id: 'palliative', name: 'Palliative Care', img: '/AF27A051-B3D3-4353-BF0A-76DEE889B540.jpg', desc: 'Compassionate end-of-life care and pain management.' },
+    { id: 'air-escorts', name: 'Air Escorts', img: '/3EB632EA-D771-44D2-9F15-75E56ECED7B2.jpg', desc: 'International medical repatriation and flight nursing.' },
+  ];
+
   return (
     <div>
-      {/* Hero with dynamic background */}
+      {/* Hero Section using your Letterhead Background */}
       <section style={{ 
-        height: '80vh', 
-        display: 'flex', 
-        alignItems: 'center', 
-        justifyContent: 'center',
-        background: 'linear-gradient(rgba(0,74,153,0.8), rgba(0,74,153,0.9)), url("https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80")',
-        backgroundSize: 'cover',
-        color: 'white',
-        textAlign: 'center'
+        height: '85vh', position: 'relative', display: 'flex', alignItems: 'center',
+        backgroundImage: 'linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url("/PHOTO-2026-03-17-17-26-27.jpg")',
+        backgroundSize: 'cover', backgroundPosition: 'center'
       }}>
-        <div className="container">
-          <h1 style={{ fontSize: '4rem', marginBottom: '20px' }}>Quality Care. Directly to You.</h1>
-          <p style={{ fontSize: '1.5rem', opacity: 0.9, marginBottom: '40px' }}>24/7 Medical Support across Sri Lanka.</p>
-          <div style={{ display: 'flex', gap: '20px', justifyContent: 'center' }}>
-            <Link to="/contact" className="btn-primary" style={{ background: 'white', color: '#004a99' }}>Emergency Call</Link>
-            <Link to="/about" className="btn-primary" style={{ background: 'transparent', border: '2px solid white' }}>Learn More</Link>
-          </div>
+        <div className="container" style={{ paddingLeft: '5%' }}>
+          <h1 style={{ fontSize: '4rem', color: '#012a4a', margin: '0' }}>Trusted.</h1>
+          <h1 style={{ fontSize: '4rem', color: '#00a8cc', margin: '0' }}>Compassionate.</h1>
+          <h1 style={{ fontSize: '4rem', color: '#012a4a', margin: '0' }}>Rapid.</h1>
+          <p style={{ maxWidth: '500px', fontSize: '1.2rem', color: '#444', margin: '20px 0' }}>
+            Sri Lanka’s premier health service provider for emergency, home, and palliative care.
+          </p>
+          <Link to="/contact" className="btn-primary" style={{ background: '#004a99', color: 'white', padding: '15px 40px', borderRadius: '5px', textDecoration: 'none', display: 'inline-block' }}>
+            Book a Service
+          </Link>
         </div>
       </section>
 
-      {/* Services with interaction */}
-      <section className="container" style={{ padding: '100px 0' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '50px', alignItems: 'center' }}>
-          <div>
-            <span style={{ color: '#00aaff', fontWeight: 'bold', textTransform: 'uppercase' }}>Our Services</span>
-            <h2 style={{ fontSize: '2.5rem', color: '#004a99' }}>Modern Healthcare Solutions</h2>
-            <p>From rapid ambulance dispatch to specialized home palliative care, MEDOCS brings the hospital to your doorstep with compassion and advanced technology.</p>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
-             <ServiceIconBox icon="🚑" title="Ambulance" link="/services/ambulance" />
-             <ServiceIconBox icon="🏠" title="Home Visit" link="/services/home-visits" />
-             <ServiceIconBox icon="🏥" title="Equipment" link="/services/equipment" />
-             <ServiceIconBox icon="✈️" title="Air Escorts" link="/services/air-escorts" />
-          </div>
+      {/* Services Grid with Interactive Hover */}
+      <section className="container" style={{ padding: '100px 5%' }}>
+        <h2 style={{ textAlign: 'center', color: '#012a4a', fontSize: '2.5rem', marginBottom: '50px' }}>Our Services</h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '30px' }}>
+          {services.map(s => (
+            <Link key={s.id} to={`/services/${s.id}`} className="service-card" style={{ textDecoration: 'none' }}>
+              <div style={{ overflow: 'hidden', borderRadius: '15px' }}>
+                <img src={s.img} alt={s.name} style={{ width: '100%', height: '250px', objectFit: 'cover', transition: '0.5s' }} 
+                     onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
+                     onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'} />
+              </div>
+              <h3 style={{ color: '#012a4a', marginTop: '20px' }}>{s.name}</h3>
+              <p style={{ color: '#666' }}>{s.desc}</p>
+            </Link>
+          ))}
         </div>
       </section>
 
-      {/* Floating WhatsApp for Interaction */}
-      <a href="https://wa.me/947XXXXXXXXX" style={{
-        position: 'fixed',
-        bottom: '30px',
-        right: '30px',
-        background: '#25D366',
-        color: 'white',
-        padding: '15px 25px',
-        borderRadius: '50px',
-        textDecoration: 'none',
-        fontWeight: 'bold',
-        boxShadow: '0 10px 20px rgba(0,0,0,0.2)',
-        zIndex: 9999
+      {/* Interactive WhatsApp Float */}
+      <a href="https://wa.me/94763400400" target="_blank" style={{
+        position: 'fixed', bottom: '30px', right: '30px', background: '#25D366',
+        color: 'white', padding: '15px 25px', borderRadius: '50px', 
+        boxShadow: '0 5px 15px rgba(0,0,0,0.2)', textDecoration: 'none', fontWeight: 'bold'
       }}>
-        💬 Chat with a Medic
+        WhatsApp Us
       </a>
     </div>
-  );
-}
-
-function ServiceIconBox({ icon, title, link }) {
-  return (
-    <Link to={link} style={{ 
-      padding: '30px', 
-      textAlign: 'center', 
-      background: '#f8fbff', 
-      borderRadius: '15px', 
-      textDecoration: 'none', 
-      color: '#004a99',
-      transition: 'all 0.3s ease'
-    }} onMouseOver={(e) => e.currentTarget.style.background = '#eef6ff'}>
-      <div style={{ fontSize: '2rem' }}>{icon}</div>
-      <div style={{ fontWeight: 'bold', marginTop: '10px' }}>{title}</div>
-    </Link>
   );
 }
