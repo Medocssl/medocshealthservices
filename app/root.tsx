@@ -26,7 +26,7 @@ export default function App() {
               background: '#012a4a', color: 'white', padding: '8px 15px', 
               borderRadius: '4px', textDecoration: 'none' 
             }}>
-              0770 118 118
+              0764400400
             </Link>
           </div>
         </nav>
