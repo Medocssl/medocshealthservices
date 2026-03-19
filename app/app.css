@@ -1,38 +1,47 @@
 :root {
-  --primary: #004a99; /* Deep Medical Blue */
-  --secondary: #00aaff; /* Light Sky Blue */
-  --accent: #25D366; /* WhatsApp Green */
-  --text: #2c3e50;
-  --bg: #ffffff;
+  --primary: #012a4a; /* Dark Navy from your logo */
+  --secondary: #00a8cc; /* Teal/Cyan from your logo */
+  --white: #ffffff;
+  --gray: #f4f7f6;
 }
 
-/* Smooth Page Transitions */
-.page-enter {
+/* Page entrance transition */
+.page-fade {
   animation: fadeIn 0.8s ease-out forwards;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(15px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Hover effect for buttons */
-.btn-primary {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+/* Scroll reveal class (Interactive) */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
 }
 
-.btn-primary:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 15px rgba(0,74,153,0.2);
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* Glassmorphism Navigation */
-nav {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.8);
-  border-bottom: 1px solid #eee;
+.nav-link {
+  position: relative;
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: 600;
+  transition: 0.3s;
 }
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0; height: 2px;
+  bottom: -4px; left: 0;
+  background-color: var(--secondary);
+  transition: 0.3s;
+}
+
+.nav-link:hover::after { width: 100%; }
