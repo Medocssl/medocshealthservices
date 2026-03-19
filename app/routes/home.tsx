@@ -1,82 +1,79 @@
-import { Link } from "react-router";
+import { motion } from "framer-motion";
 
-export default function Home() {
-  const services = [
-    { id: '1', name: 'Ambulance Services', img: '/810BAE48-7E8B-426D-B949-CD397B8DB004.JPG' },
-    { id: '2', name: 'Doctor Home Visit', img: '/36D24EF7-7AB3-4C21-965F-376E81E837BF.JPG' },
-    { id: '3', name: 'Palliative Care', img: '/AF27A051-B3D3-4353-BF0A-76DEE889B540.JPG' },
-    { id: '4', name: 'Medical Air Escort', img: '/3EB632EA-D771-44D2-9F15-75E56ECED7B2.JPG' }
-  ];
-
+export default function HomePage() {
   return (
-    <div>
-      {/* Hero Section */}
-      <section style={{ 
-        padding: '12% 5%', 
-        backgroundImage: 'linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url("/PHOTO-2026-03-17-17-26-27.JPG")',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        minHeight: '50vh'
-      }}>
-        <h1 style={{ 
-          fontSize: 'clamp(2.2rem, 10vw, 4rem)', 
-          color: '#012a4a', 
-          margin: 0, 
-          lineHeight: '1.1' 
-        }}>
-          MEDOCS
-        </h1>
-        <p style={{ 
-          fontSize: 'clamp(1rem, 5vw, 1.5rem)', 
-          color: '#00a8cc', 
-          fontWeight: 'bold', 
-          marginTop: '5px' 
-        }}>
-          HEALTH SERVICES (PVT) LTD
-        </p>
-        <Link to="/contact" style={{
-          background: '#012a4a', color: 'white', padding: '12px 25px',
-          textDecoration: 'none', borderRadius: '5px', width: 'fit-content',
-          marginTop: '20px', fontWeight: 'bold', fontSize: '14px'
-        }}>
-          BOOK NOW
-        </Link>
+    <main className="pt-20">
+      {/* --- HERO SECTION --- */}
+      <section className="relative h-[90vh] flex items-center justify-center overflow-hidden bg-slate-50">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center z-10 px-4"
+        >
+          <h1 className="text-5xl md:text-7xl font-bold text-[#004680] mb-6">
+            MEDOCS Health Services
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-600 mb-10 max-w-2xl mx-auto">
+            Bringing Hospital Care Home with Comfort & Compassion.
+          </p>
+          <div className="flex flex-col md:flex-row gap-4 justify-center">
+            <button className="bg-[#004680] text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:scale-105 transition">
+              Explore Services
+            </button>
+            <button className="bg-white border-2 border-gray-200 px-8 py-4 rounded-xl font-semibold hover:bg-gray-50 transition">
+              Contact Us
+            </button>
+          </div>
+        </motion.div>
+        
+        {/* Background Subtle Shape */}
+        <div className="absolute top-0 right-0 -z-10 w-1/2 h-full bg-blue-50/50 rounded-l-full blur-3xl" />
       </section>
 
-      {/* Services Grid - Smart stacking for Mobile */}
-      <div style={{ 
-        display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
-        gap: '20px', 
-        padding: '40px 5%',
-        backgroundColor: '#f9f9f9'
-      }}>
-        {services.map((s) => (
-          <div key={s.id} style={{ 
-            background: 'white', 
-            borderRadius: '10px', 
-            overflow: 'hidden', 
-            boxShadow: '0 4px 12px rgba(0,0,0,0.08)' 
-          }}>
-            <img src={s.img} alt={s.name} style={{ width: '100%', height: '220px', objectFit: 'cover' }} />
-            <div style={{ padding: '15px' }}>
-              <h3 style={{ margin: 0, color: '#012a4a', fontSize: '1.2rem' }}>{s.name}</h3>
-            </div>
-          </div>
-        ))}
-      </div>
+      {/* --- SERVICES PREVIEW --- */}
+      <section className="py-24 max-w-7xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-bold text-gray-900">Our Specialized Care</h2>
+          <div className="h-1 w-20 bg-[#00a0e3] mx-auto mt-4"></div>
+        </div>
 
-      {/* Floating Call Button (Visible mainly on Mobile) */}
-      <a href="tel:0770118118" style={{
-        position: 'fixed', bottom: '20px', left: '20px', background: '#012a4a',
-        color: 'white', padding: '15px', borderRadius: '50px', textDecoration: 'none',
-        boxShadow: '0 4px 15px rgba(0,0,0,0.3)', fontWeight: 'bold', zIndex: 1000
-      }}>
-        📞 Call Now
-      </a>
-    </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Service Card Example */}
+          <ServiceCard 
+            title="Ground Ambulance" 
+            img="https://images.unsplash.com/photo-1587745416684-47953f16f02f?auto=format&fit=crop&w=800"
+            desc="Swift, 24/7 emergency medical transportation with expert paramedics."
+          />
+          <ServiceCard 
+            title="Doctor Home Visits" 
+            img="https://images.unsplash.com/photo-1559839734-2b71f1e3c770?auto=format&fit=crop&w=800"
+            desc="Professional medical consultation in the comfort of your own bed."
+          />
+          <ServiceCard 
+            title="Nurse Home Visits" 
+            img="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=800"
+            desc="Dedicated nursing care, wound dressing, and medication management."
+          />
+        </div>
+      </section>
+    </main>
+  );
+}
+
+// 🧩 Reusable Card Component
+function ServiceCard({ title, img, desc }: { title: string, img: string, desc: string }) {
+  return (
+    <motion.div 
+      whileHover={{ y: -10 }}
+      className="bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300"
+    >
+      <img src={img} alt={title} className="w-full h-48 object-cover" />
+      <div className="p-8">
+        <h3 className="text-xl font-bold mb-3">{title}</h3>
+        <p className="text-gray-600 mb-6 text-sm leading-relaxed">{desc}</p>
+        <button className="text-[#00a0e3] font-semibold hover:underline">Learn More →</button>
+      </div>
+    </motion.div>
   );
 }
